@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf8'>
+  <title>KC</title>
+
+  <script src='../build/build.js'></script>
+
+</head>
+<body>
+
+    <input type="text" name="words" placeholder="on" id="elem"><br>
+
+    <script>
+      var lang = 'greek';
+      var el = document.querySelector('#elem');
+      el.focus();
+      //el.value = '';
+      //var uniq = require('uniq');
+      var kc = require('kc').lang('greek').anchor(el);
+
+      //kc.enable();
+
+
+      function log () { console.log.apply(console, arguments) }
+
+    </script>
+
+</body>
+</html>

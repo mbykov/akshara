@@ -1,0 +1,20 @@
+{
+    "name": "kc",
+    "repo": "mbykov/kc",
+    "description": "kc",
+    "version": "1.0.1",
+    "keywords": [],
+    "dependencies": {
+        "component/each": "*",
+        "component/indexof": "*",
+        "yields/uniq": "*"
+    },
+    "license": "GPL",
+    "main": "index.js",
+    "scripts": [
+        "index.js",
+        "cslav.js",
+        "greek.js"
+    ],
+    "remotes": []
+}
