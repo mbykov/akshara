@@ -12,13 +12,13 @@
     <input type="text" name="words" placeholder="on" id="elem"><br>
 
     <script>
-      var lang = 'greek';
+      //var lcode = 'gr';
+      var lcode = 'sa';
       var el = document.querySelector('#elem');
       el.focus();
       //el.value = '';
       //var uniq = require('uniq');
-      var kc = require('kc').lang('greek').anchor(el);
-
+      var kc = require('kc').lang(lcode).anchor(el);
       //kc.enable();
 
 

@@ -14,7 +14,8 @@
     "scripts": [
         "index.js",
         "cslav.js",
-        "greek.js"
+        "greek.js",
+        "sanskrit.js"
     ],
     "remotes": []
 }
