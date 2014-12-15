@@ -3,6 +3,7 @@ var uniq = require('uniq');
 var index = require('indexof');
 //var greek = require('./greek').greek;
 //var cslav = require('./cslav');
+var select = require('select')
 
 var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; // 13 - enter // shift = 16; ctrl = 17; // 46 ?
 
@@ -38,6 +39,7 @@ kc.prototype.lang = function(lcode) {
 
 kc.prototype.anchor = function(el) {
     var that = this;
+    that.el = el;
     var seq = [];
     el.onkeydown = function(e) {
         if (index(ignored, e.which) > 0) return;
@@ -53,10 +55,20 @@ kc.prototype.type = function(e) {
     var lett = this.layout[key][e.which];
     if (!lett) return;
     e.preventDefault();
+    var el = this.el;
     var pos = e.target.selectionStart;
-    var value = e.target.value;
-    el.value = [value.substring(0, pos), lett, value.substring(pos)].join('');
-    el.setSelectionRange(pos+1, pos+1);
+    var position = window.getSelection().getRangeAt(0).startOffset;
+    // for input_text
+    //var value = e.target.value;
+    var value = e.target.textContent;
+    log('VALUE', value, pos, position, lett);
+    pos = position +1;
+    //el.value = [value.substring(0, pos), lett, value.substring(pos)].join('');
+    //el.textContent = [value.substring(0, pos), lett, value.substring(pos)].join('');
+    // FIXME: это нужно привести в порядок, и position не кроссплатф, взять из public/ks.js
+    el.textContent = [el.textContent, lett].join('');
+    select(el, pos, pos);
+    //el.setSelectionRange(pos+1, pos+1);
 }
 
 kc.prototype.enable = function() {
