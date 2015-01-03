@@ -1,4 +1,5 @@
 // скопировал из web/Component и пытаюсь запустить
+
 var uniq = require('uniq');
 var index = require('indexof');
 //var greek = require('./greek').greek;
@@ -49,12 +50,20 @@ kc.prototype.anchor = function(el) {
     return this;
 }
 
+
 kc.prototype.type = function(e) {
     if (!this._enabled) return;
     var key = (e.shiftKey && e.altKey) ? 'altShift' : (e.shiftKey) ? 'shift' : (e.altKey) ? 'alt' : 'plain';
     var lett = this.layout[key][e.which];
     if (!lett) return;
     e.preventDefault();
+
+    var lettel = document.createTextNode(lett);
+    log('TYPE', lettel.nodeType)
+    insertNodeAfterSelection(lettel, e);
+
+    return;
+
     var el = this.el;
     var pos = e.target.selectionStart;
     var position = window.getSelection().getRangeAt(0).startOffset;
@@ -70,6 +79,34 @@ kc.prototype.type = function(e) {
     select(el, pos, pos);
     //el.setSelectionRange(pos+1, pos+1);
 }
+
+
+function insertNodeAfterSelection(node, evt) {
+    var sel, range, html;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.collapse(false);
+            range.insertNode(node);
+        }
+        // http://stackoverflow.com/questions/12920225/text-selection-in-divcontenteditable-when-double-click
+        // http://stackoverflow.com/questions/6249095/how-to-set-caretcursor-position-in-contenteditable-element-div
+        // http://stackoverflow.com/questions/1181700/set-cursor-position-on-contenteditable-div
+        range.setStart(evt.rangeParent, evt.rangeOffset);
+        range.collapse(true);
+        var savedRange = range;
+        sel.removeAllRanges();
+        sel.addRange(savedRange);
+
+    } else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        range.collapse(false);
+        html = (node.nodeType == 3) ? node.data : node.outerHTML;
+        range.pasteHTML(html);
+    }
+}
+
 
 kc.prototype.enable = function() {
     this._enabled = true;
