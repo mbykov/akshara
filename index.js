@@ -53,6 +53,7 @@ kc.prototype.anchor = function(el) {
 
 kc.prototype.type = function(e) {
     if (!this._enabled) return;
+    if(e.ctrlKey) return;
     var key = (e.shiftKey && e.altKey) ? 'altShift' : (e.shiftKey) ? 'shift' : (e.altKey) ? 'alt' : 'plain';
     var lett = this.layout[key][e.which];
     if (!lett) return;
@@ -64,20 +65,20 @@ kc.prototype.type = function(e) {
 
     return;
 
-    var el = this.el;
-    var pos = e.target.selectionStart;
-    var position = window.getSelection().getRangeAt(0).startOffset;
-    // for input_text
-    //var value = e.target.value;
-    var value = e.target.textContent;
-    log('VALUE', value, pos, position, lett);
-    pos = position +1;
-    //el.value = [value.substring(0, pos), lett, value.substring(pos)].join('');
-    //el.textContent = [value.substring(0, pos), lett, value.substring(pos)].join('');
-    // FIXME: это нужно привести в порядок, и position не кроссплатф, взять из public/ks.js
-    el.textContent = [el.textContent, lett].join('');
-    select(el, pos, pos);
-    //el.setSelectionRange(pos+1, pos+1);
+    // var el = this.el;
+    // var pos = e.target.selectionStart;
+    // var position = window.getSelection().getRangeAt(0).startOffset;
+    // // for input_text
+    // //var value = e.target.value;
+    // var value = e.target.textContent;
+    // log('VALUE', value, pos, position, lett);
+    // pos = position +1;
+    // //el.value = [value.substring(0, pos), lett, value.substring(pos)].join('');
+    // //el.textContent = [value.substring(0, pos), lett, value.substring(pos)].join('');
+    // // FIXME: это нужно привести в порядок, и position не кроссплатф, взять из public/ks.js
+    // el.textContent = [el.textContent, lett].join('');
+    // select(el, pos, pos);
+    // //el.setSelectionRange(pos+1, pos+1);
 }
 
 
@@ -93,6 +94,7 @@ function insertNodeAfterSelection(node, evt) {
         // http://stackoverflow.com/questions/12920225/text-selection-in-divcontenteditable-when-double-click
         // http://stackoverflow.com/questions/6249095/how-to-set-caretcursor-position-in-contenteditable-element-div
         // http://stackoverflow.com/questions/1181700/set-cursor-position-on-contenteditable-div
+        // FIXME: так члепил что-то. BUG: После исправления не в конце текста курсор становится в конец
         range.setStart(evt.rangeParent, evt.rangeOffset);
         range.collapse(true);
         var savedRange = range;
