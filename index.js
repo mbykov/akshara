@@ -58,13 +58,11 @@ kc.prototype.type = function(e) {
     e.preventDefault();
 
     var lettel = document.createTextNode(lett);
-    log('TYPE', lettel.nodeType, lettel);
     insertNodeAfterSelection(lettel, e);
 }
 
 
 function insertNodeAfterSelection(node, evt) {
-    log('NODE', node);
     var sel, range, html;
     var x = evt.clientX, y = evt.clientY;
     if (window.getSelection) {
