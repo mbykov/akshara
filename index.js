@@ -1,4 +1,4 @@
-// скопировал из web/Component и пытаюсь запустить
+//
 
 var uniq = require('uniq');
 var index = require('indexof');
@@ -11,7 +11,7 @@ var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; //
 module.exports = kc();
 
 /*
-  греческий сломан, нужно восстановить .seq для комбинаций
+   greek is broken, .seq should be restored for combined greek syms
 */
 
 function kc() {
@@ -29,11 +29,8 @@ var langCode ={
 }
 
 kc.prototype.lang = function(lcode) {
-    //var langName = langCode[lcode] || 'sanskrit';
-    //var fn = ['./', langName].join('');
-    //log("LANG", lcode, fn, (fn === './sanskrit'));
-    var layout = require('./sanskrit'); // WTF? ==== ONLY SANSKRIT FOR NOW ==== не берет из fn
     //var layout = require(fn);
+    var layout = require('./sanskrit'); // ==== ONLY SANSKRIT FOR NOW ====
     this.layout = layout;
     return this;
 }
@@ -56,7 +53,7 @@ kc.prototype.type = function(e) {
     var lett = this.layout[key][e.which];
     if (!lett) return;
     e.preventDefault();
-
+    log('WHICH', e.which);
     var lettel = document.createTextNode(lett);
     insertNodeAfterSelection(lettel, e);
 }
@@ -64,7 +61,7 @@ kc.prototype.type = function(e) {
 
 function insertNodeAfterSelection(node, evt) {
     var sel, range, html;
-    var x = evt.clientX, y = evt.clientY;
+    // var x = evt.clientX, y = evt.clientY;
     if (window.getSelection) {
         sel = window.getSelection();
         if (sel.getRangeAt && sel.rangeCount) {
