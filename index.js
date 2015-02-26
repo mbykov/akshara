@@ -6,7 +6,7 @@ var index = require('indexof');
 //var cslav = require('./cslav');
 var select = require('select')
 
-var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; // 13 - enter // shift = 16; ctrl = 17; // 46 ?
+var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; // 13 - enter // shift = 16; ctrl = 17;
 
 module.exports = kc();
 
