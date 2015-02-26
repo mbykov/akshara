@@ -1,14 +1,11 @@
 {
     "name": "kc",
     "repo": "mbykov/kc",
-    "description": "kc",
+    "description": "keyboard capture for morpheus-sanskrit",
     "version": "1.0.1",
     "keywords": [],
     "dependencies": {
-        "component/each": "*",
-        "component/indexof": "*",
-        "stagas/select": "~0.1.0",
-        "yields/uniq": "*"
+        "component/indexof": "*"
     },
     "license": "GPL",
     "main": "index.js",
