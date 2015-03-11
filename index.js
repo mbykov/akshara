@@ -49,7 +49,6 @@ kc.prototype.type = function(e) {
     var lett = this.layout[key][e.which];
     if (!lett) return;
     e.preventDefault();
-    log('WHICH', e.which);
     var lettel = document.createTextNode(lett);
     insertNodeAfterSelection(lettel, e);
 }
