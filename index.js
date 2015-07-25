@@ -1,6 +1,6 @@
 //
 
-var index = require('indexof');
+// var index = require('indexof');
 
 var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; // 13 - enter // shift = 16; ctrl = 17;
 
@@ -36,7 +36,7 @@ kc.prototype.anchor = function(el) {
     that.el = el;
     var seq = [];
     el.onkeydown = function(e) {
-        if (index(ignored, e.which) > 0) return;
+        if (ignored.indexOf(e.which) > 0) return;
         that.type(e);
     };
     return this;
@@ -51,8 +51,18 @@ kc.prototype.type = function(e) {
     e.preventDefault();
     var lettel = document.createTextNode(lett);
     insertNodeAfterSelection(lettel, e);
+    // NEW:
+    // placeID(this.el);
 }
 
+// function placeID(el) {
+//     var parent = el;
+//     var child = q('#id');
+//     if (child) parent.removeChild(child);
+//     var idspan = document.createElement("span");
+//     idspan.id = 'id';
+//     insertNodeAfterSelection(idspan);
+// }
 
 function insertNodeAfterSelection(node, evt) {
     var sel, range, html;
@@ -71,7 +81,6 @@ function insertNodeAfterSelection(node, evt) {
         // http://stackoverflow.com/questions/6249095/how-to-set-caretcursor-position-in-contenteditable-element-div
         // http://stackoverflow.com/questions/1181700/set-cursor-position-on-contenteditable-div
         // http://stackoverflow.com/questions/2213961/selection-ranges-in-webkit-safari-chrome <==
-        // FIXME: так слепил что-то. BUG: После исправления не в конце текста курсор становится в конец
 
     } else if (document.selection && document.selection.createRange) {
         range = document.selection.createRange();
@@ -91,3 +100,11 @@ kc.prototype.disable = function() {
 }
 
 function log () { console.log.apply(console, arguments) }
+
+function q(sel) {
+    return document.querySelector(sel);
+}
+
+function qs(sel) {
+    return document.querySelectorAll(sel);
+}
