@@ -15,14 +15,14 @@ $ component install mbykov/akshara
 ## API
 
 ````javascript
-var akzara = require('mbykov/akzara');
+var akshara = require('mbykov/akshara');
 ````
 
 
 ````javascript
-var oEditor = q('#akzara');
+var oEditor = q('#akshara');
 oEditor.contentEditable = true;
-akzara.lang('sa').anchor(oEditor).enable();
+akshara.lang('sa').anchor(oEditor).enable();
 ````
 
 

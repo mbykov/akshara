@@ -4,14 +4,14 @@
 
 var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; // 13 - enter // shift = 16; ctrl = 17;
 
-module.exports = akzara();
+module.exports = akshara();
 
 /*
    greek is broken, .seq should be restored for combined greek syms
 */
 
-function akzara() {
-    if (!(this instanceof akzara)) return new akzara();
+function akshara() {
+    if (!(this instanceof akshara)) return new akshara();
     this.seq = [];
     return this;
 }
@@ -31,14 +31,14 @@ c.shiftCons = [ 66, 71, 68, 75, 76, 78, 80, 82, 87, 81, 83, 84, 89, 67, 74 ];
 c.a = 65;
 c.vows = [65,69,85,73,79,70,88];
 
-akzara.prototype.lang = function(lcode) {
+akshara.prototype.lang = function(lcode) {
     //var layout = require(fn);
     var layout = require('./sanskrit'); // ==== ONLY SANSKRIT FOR NOW ====
     this.layout = layout;
     return this;
 }
 
-akzara.prototype.anchor = function(el) {
+akshara.prototype.anchor = function(el) {
     var that = this;
     that.el = el;
     var seq = [];
@@ -51,7 +51,7 @@ akzara.prototype.anchor = function(el) {
 }
 
 // backspace = 8
-akzara.prototype.type = function(e) {
+akshara.prototype.type = function(e) {
     if (!this._enabled) return;
     if(e.ctrlKey) return;
     var key = (e.shiftKey && e.altKey) ? 'altShift' : (e.shiftKey) ? 'shift' : (e.altKey) ? 'alt' : 'plain';
@@ -62,7 +62,7 @@ akzara.prototype.type = function(e) {
     if (key == 'plain' && inc(c.plainCons, e.which)) lett = letvir;
     if (key == 'shift' && inc(c.shiftCons, e.which)) lett = letvir;
     // log('lett', key, lett, letvir, inc(c.plainCons, e.which), 'WHICH', e.which, 'CONS', c.plainCons);
-    var oEd = q('#akzara');
+    var oEd = q('#akshara');
     var text = oEd.textContent;
     var fin = text[text.length-1];
     if (text.length == 0 && inc(c.vows, e.which)) lett = this.layout['alt'][e.which];
@@ -78,7 +78,7 @@ akzara.prototype.type = function(e) {
 }
 
 function removeVirama(e) {
-    var oEd = q('#akzara');
+    var oEd = q('#akshara');
     var text = oEd.textContent;
     text = text.slice(0, -1);
     oEd.textContent = text;
@@ -94,7 +94,7 @@ function removeVirama(e) {
 
 function insertNodeAfterSelection(node, evt) {
     var sel, range, html;
-    var element = document.getElementById('akzara');
+    var element = document.getElementById('akshara');
     // var caretOffset = 0;
     // var x = evt.clientX, y = evt.clientY;
     if (window.getSelection) {
@@ -144,11 +144,11 @@ function insertNodeAfterSelection(node, evt) {
 }
 
 
-akzara.prototype.enable = function() {
+akshara.prototype.enable = function() {
     this._enabled = true;
 }
 
-akzara.prototype.disable = function() {
+akshara.prototype.disable = function() {
     this._enabled = false;
 }
 
