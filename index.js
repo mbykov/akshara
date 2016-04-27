@@ -1,17 +1,17 @@
-//
-
-// var index = require('indexof');
+/*
+ simple one-line, on-line editor for for Nagari scripting, i.e. for Sanskrit
+*/
 
 var ignored = [999, 0, 8, 9, 12, 13, 16, 17, 18, 20, 27, 35, 36, 37, 38, 40]; // 13 - enter // shift = 16; ctrl = 17;
 
-module.exports = kc();
+module.exports = akshara();
 
 /*
    greek is broken, .seq should be restored for combined greek syms
 */
 
-function kc() {
-    if (!(this instanceof kc)) return new kc();
+function akshara() {
+    if (!(this instanceof akshara)) return new akshara();
     this.seq = [];
     return this;
 }
@@ -24,14 +24,15 @@ var langCode ={
     '': '',
 }
 
-kc.prototype.lang = function(lcode) {
+
+akshara.prototype.lang = function(lcode) {
     //var layout = require(fn);
     var layout = require('./sanskrit'); // ==== ONLY SANSKRIT FOR NOW ====
     this.layout = layout;
     return this;
 }
 
-kc.prototype.anchor = function(el) {
+akshara.prototype.anchor = function(el) {
     var that = this;
     that.el = el;
     var seq = [];
@@ -42,7 +43,7 @@ kc.prototype.anchor = function(el) {
     return this;
 }
 
-kc.prototype.type = function(e) {
+akshara.prototype.type = function(e) {
     if (!this._enabled) return;
     if(e.ctrlKey) return;
     var key = (e.shiftKey && e.altKey) ? 'altShift' : (e.shiftKey) ? 'shift' : (e.altKey) ? 'alt' : 'plain';
@@ -50,19 +51,11 @@ kc.prototype.type = function(e) {
     if (!lett) return;
     e.preventDefault();
     var lettel = document.createTextNode(lett);
-    insertNodeAfterSelection(lettel, e);
-    // NEW:
-    // placeID(this.el);
+    // insertNodeAfterSelection(lettel, e);
+    log('LETT', lett)
+
 }
 
-// function placeID(el) {
-//     var parent = el;
-//     var child = q('#id');
-//     if (child) parent.removeChild(child);
-//     var idspan = document.createElement("span");
-//     idspan.id = 'id';
-//     insertNodeAfterSelection(idspan);
-// }
 
 function insertNodeAfterSelection(node, evt) {
     var sel, range, html;
@@ -91,11 +84,11 @@ function insertNodeAfterSelection(node, evt) {
 }
 
 
-kc.prototype.enable = function() {
+akshara.prototype.enable = function() {
     this._enabled = true;
 }
 
-kc.prototype.disable = function() {
+akshara.prototype.disable = function() {
     this._enabled = false;
 }
 

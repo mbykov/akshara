@@ -1,16 +1,12 @@
 {
-    "name": "kc",
-    "repo": "mbykov/kc",
+    "name": "akshara",
+    "repo": "mbykov/akshara",
     "description": "keyboard capture for morpheus-sanskrit",
-    "version": "1.0.1",
+    "version": "1.3.0",
     "keywords": [],
-    "dependencies": {
-        "component/indexof": "*"
-    },
     "license": "GPL",
     "main": "index.js",
     "scripts": [
-        "index.js",
         "cslav.js",
         "greek.js",
         "sanskrit.js"

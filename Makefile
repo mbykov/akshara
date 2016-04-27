@@ -1,7 +1,10 @@
 start: clean build
 
+# build: components index.js
+# 	@component build --dev
+
 build: components index.js
-	@component build --dev
+	@duo index.js
 
 components: component.json
 	@component install --dev
