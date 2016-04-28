@@ -1,0 +1,25 @@
+{
+    "name": "akshara",
+    "version": "1.3.1",
+    "description": "keyboard capture for morpheus-sanskrit",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/mbykov/akshara.git"
+    },
+    "keywords": [
+        "sanskrit",
+        "devanagari",
+        "node.js",
+        "duo.js"
+    ],
+    "author": "Michael Bykov",
+    "license": "GNU GPL",
+    "bugs": {
+        "url": "https://github.com/mbykov/akshara/issues"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "should": "*"
+    }
+}
