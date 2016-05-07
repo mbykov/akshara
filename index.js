@@ -116,7 +116,7 @@ function insertNodeAfterSelection(node, evt) {
             // caretOffset = preCaretRange.toString();
             var startText = preCaretRange.toString();
             var oStart = document.createTextNode(startText);
-            log('startText', startText);
+            // log('startText', startText);
 
             range.setEndAfter(node);
             range.setStart(element, 0);
