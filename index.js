@@ -65,7 +65,11 @@ akshara.prototype.type = function(e) {
     var oEd = q('#akshara');
     var text = oEd.textContent;
     var fin = text[text.length-1];
-    if (text.length == 0 && inc(c.vows, e.which)) lett = this.layout['alt'][e.which];
+    if (text.length == 0 && inc(c.vows, e.which)) {
+        if (key == 'shift') lett = this.layout['altShift'][e.which];
+        else lett = this.layout['alt'][e.which];
+    }
+
     if (text.length > 0 && fin == c.virama && inc(c.vows, e.which)) {
         removeVirama(e);
         if (e.which == c.a) {
@@ -76,6 +80,8 @@ akshara.prototype.type = function(e) {
     var lettel = document.createTextNode(lett);
     insertNodeAfterSelection(lettel, e);
 }
+
+// 'आक्रिति' == 'आकृति'
 
 function removeVirama(e) {
     var oEd = q('#akshara');
