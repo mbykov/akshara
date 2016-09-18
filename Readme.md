@@ -1,6 +1,6 @@
 # akshara
 
-simple one-line one-word editor for Sanskrit.
+simple one-line one-word editor for Sanskrit
 
 Why it is named 'akshara'? Because nagari script is akshara, and not stupid 'abugida'.
 

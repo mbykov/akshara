@@ -1,8 +1,8 @@
 {
     "name": "akshara",
     "repo": "mbykov/akshara",
-    "description": "keyboard capture for morpheus-sanskrit",
-    "version": "1.4.0",
+    "description": "simple one-line one-word editor for Sanskrit",
+    "version": "1.4.1",
     "keywords": ["sanskrit", "javascript"],
     "license": "GPL",
     "main": "index.js",

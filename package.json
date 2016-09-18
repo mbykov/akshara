@@ -1,7 +1,7 @@
 {
     "name": "akshara",
-    "version": "1.4.0",
-    "description": "keyboard capture for morpheus-sanskrit",
+    "version": "1.4.1",
+    "description": "simple one-line one-word editor for Sanskrit",
     "main": "index.js",
     "repository": {
         "type": "git",
