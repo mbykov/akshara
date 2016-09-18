@@ -43,7 +43,6 @@ akshara.prototype.anchor = function(el) {
     that.el = el;
     var seq = [];
     el.onkeydown = function(e) {
-        // log('EV', e.which)
         if (ignored.indexOf(e.which) > 0) return;
         that.type(e);
     };
@@ -61,7 +60,6 @@ akshara.prototype.type = function(e) {
     var letvir = [lett, c.virama].join('');
     if (key == 'plain' && inc(c.plainCons, e.which)) lett = letvir;
     if (key == 'shift' && inc(c.shiftCons, e.which)) lett = letvir;
-    // log('lett', key, lett, letvir, inc(c.plainCons, e.which), 'WHICH', e.which, 'CONS', c.plainCons);
     var oEd = q('#akshara');
     var text = oEd.textContent;
     var fin = text[text.length-1];
@@ -122,7 +120,6 @@ function insertNodeAfterSelection(node, evt) {
             // caretOffset = preCaretRange.toString();
             var startText = preCaretRange.toString();
             var oStart = document.createTextNode(startText);
-            // log('startText', startText);
 
             range.setEndAfter(node);
             range.setStart(element, 0);
